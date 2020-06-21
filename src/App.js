@@ -42,7 +42,7 @@ export default function App() {
     <>
       <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
       <SafeAreaView style={styles.container}>
-        {/* <ScrollView>
+        <ScrollView>
           {
             repositories.map(repo => (
               <View style={styles.repositoryContainer}>
@@ -77,9 +77,9 @@ export default function App() {
               </View>
             ))
           }
-        </ScrollView> */}
+        </ScrollView>
 
-        <FlatList
+        {/* <FlatList
           data={repositories}
           keyExtractor={repo => repo.id}
           renderItem={({ item }) => (
@@ -114,7 +114,7 @@ export default function App() {
               </TouchableOpacity>
             </View>        
           )}        
-        />
+        /> */}
       
       </SafeAreaView>
     </>
