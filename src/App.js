@@ -31,7 +31,7 @@ export default function App() {
 
       if (repositoryIndex > -1) {
         const actualRepos = [...repositories];
-        actualRepos[repositoryIndex] = resp.data
+        actualRepos[repositoryIndex] = resp.data.likes
         
         setRepositories(actualRepos);
       }
@@ -42,44 +42,7 @@ export default function App() {
     <>
       <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
       <SafeAreaView style={styles.container}>
-        <ScrollView>
-          {
-            repositories.map(repo => (
-              <View style={styles.repositoryContainer}>
-                <Text style={styles.repository}>{repo.title}</Text>
-
-                <View style={styles.techsContainer}>
-                  {
-                    repo.techs.map(tech => (
-                      <Text style={styles.tech}>
-                        {tech}
-                      </Text>
-                    ))
-                  }
-                </View>
-
-                <View style={styles.likesContainer}>
-                  <Text
-                    style={styles.likeText}
-                    testID={`repository-likes-${repo.id}`}
-                  >
-                    {repo.likes} {repo.likes === 1 ? "curtida" : "curtidas"}
-                  </Text>
-                </View>
-
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => handleLikeRepository(repo.id)}
-                  testID={`like-button-${repo.id}`}
-                >
-                  <Text style={styles.buttonText}>Curtir</Text>
-                </TouchableOpacity>
-              </View>
-            ))
-          }
-        </ScrollView>
-
-        {/* <FlatList
+        <FlatList
           data={repositories}
           keyExtractor={repo => repo.id}
           renderItem={({ item }) => (
@@ -89,7 +52,7 @@ export default function App() {
               <View style={styles.techsContainer}>
                 {
                   item.techs.map(tech => (
-                    <Text style={styles.tech}>
+                    <Text key={tech} style={styles.tech}>
                       {tech}
                     </Text>
                   ))
@@ -101,7 +64,8 @@ export default function App() {
                   style={styles.likeText}
                   testID={`repository-likes-${item.id}`}
                 >
-                  {item.likes} {item.likes === 1 ? "curtida" : "curtidas"}
+                  {item.likes} curtidas
+                  {/* {item.likes === 1 ? "curtida" : "curtidas"} */}
                 </Text>
               </View>
 
@@ -114,7 +78,7 @@ export default function App() {
               </TouchableOpacity>
             </View>        
           )}        
-        /> */}
+        />
       
       </SafeAreaView>
     </>
